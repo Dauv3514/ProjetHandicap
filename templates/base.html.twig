@@ -2,18 +2,34 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    </head>
+
+    <body>
+
+    <div class="navbar ">
+      <nav>
+        <ul>
+          <li> <a href="{{ path('accueil') }}"> </a></li>
+          <li> <a href="{{ path('concept') }}"> <br> Le concept </a></li>
+          <li> <a href="{{ path('sorties') }}"> <br> Les sorties </a></li>
+          <li> <a href="https://www.linkedin.com/in/valentin-dauvier-bb0b95b1/" class="button">
+                <img src="images/logo handi'acc.png" alt="Logo du site" />
+          </a></li>
+          <li> <a href="{{ path('connexion') }}"> <br> Connexion </a></li>
+          <li> <a href="{{ path('inscription') }}"> <br> Inscription </a> </li>
+        </ul>     
+      </nav>
+    </div>
+ 
+    <div class="container">
+        {% block body %}
+    </div>
+        
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+    
     </body>
 </html>
