@@ -9,26 +9,45 @@
 
     <body>
 
-    <div class="navbar ">
+    <div class="navbar">
       <nav>
         <ul>
-          <li> <a href="{{ path('accueil') }}"> </a></li>
-          <li> <a href="{{ path('concept') }}"> <br> Le concept </a></li>
-          <li> <a href="{{ path('sorties') }}"> <br> Les sorties </a></li>
-          <li> <a href="https://www.linkedin.com/in/valentin-dauvier-bb0b95b1/" class="button">
+          <li> <a href="{{ path('accueil') }}"> Accueil </a></li>
+          <li> <a href="{{ path('concept') }}">  Le concept </a></li>
+          <li> <a href="{{ path('sorties') }}">  Les sorties </a></li>
+          <li> <a href="{{ path('accueil') }}" class="button">
                 <img src="images/logo handi'acc.png" alt="Logo du site" />
           </a></li>
-          <li> <a href="{{ path('connexion') }}"> <br> Connexion </a></li>
-          <li> <a href="{{ path('inscription') }}"> <br> Inscription </a> </li>
+          <li> <a href="{{ path('securite_connexion') }}">Connexion </a></li>
+          <li> <a href="{{ path('inscription') }}"> Inscription </a> </li>
         </ul>     
       </nav>
     </div>
  
-    <div class="container">
+    
         {% block body %}
-    </div>
+    
         
         {% endblock %}
+
+    <div class="footer">
+      <nav>
+        <ul>
+          <li> <a href="{{ path('accueil') }}"> CGV </a></li>
+          <li> <a href="{{ path('concept') }}">  CGU </a></li>
+          <li> <a href="{{ path('sorties') }}">  Contact </a></li>
+          <li> <a href="{{ path('accueil') }}" class="button">
+                <img src="images/Instagram.png" alt="Réseaux Sociaux" />
+          </a></li>
+          <li> <a href="{{ path('accueil') }}" class="button">
+                <img src="images/facebook.png" alt="Réseaux Sociaux" />
+          </a></li>
+          
+        </ul>     
+      </nav>
+    </div>
+
+    
 
     
     </body>

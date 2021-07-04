@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
 
@@ -16,7 +16,6 @@ qui souhaite trouver une personne pour
 l’accompagner dans une activité 
 (balade, sorties, voyages etc..)
 </p>  
-<a href="{{ path('sorties') }}"> <button type="submit" class="btn btn-primary"> Proposer une sortie </button> </a> 
 </div>
 </div>
 
@@ -28,7 +27,6 @@ l’accompagner dans une activité
 à donner afin d’accompagner une personne en situation 
 de handicap lors d’une activité
 </p>
-<a href="{{ path('sorties') }}"> <button type="submit" class="btn btn-primary"> Voir les sorties proposées par les membres  </button> </a> 
 
 </div>
 <div class="image2">
@@ -36,13 +34,17 @@ de handicap lors d’une activité
 </div>
 
 </div>
-
 </div>
 
-<div class="inscrire">
-
-<a href="{{ path('inscription') }}"> <button type="submit" class="btn btn-danger"> Rejoindre Handi'ACC </button> </a>
-
+<div class="dashboard">
+<div class="centre">
+<h1> Accompagné ou Accompagnant ? </h1>
+<p> tu souhaites proposer une sortie sur la plateforme ? </p>
+<p> c'est possible ici ! </p>
+<a href="{{ path('sorties') }}"> <button type="submit" class="btn btn-primary"> Proposer une sortie via mon Dashboard </button> </a>
+</div>
 </div>
 
 {% endblock %}
+
+

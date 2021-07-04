@@ -3,10 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ * fields={"email"},
+ * message="L'email que vous avez indiqué est déja utilisé !"
+ * )
  */
 class User
 {
@@ -19,6 +27,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -34,8 +43,11 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+    * @Assert\EqualTo(propertyPath="confirme_motdepasse", message="Vous devez taper le même mot de passe")
      */
     private $motdepasse;
+
+    
 
     public $confirme_motdepasse;
 
@@ -58,6 +70,22 @@ class User
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity=Sortie::class, mappedBy="user")
+     */
+    private $sorties;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Presence::class, mappedBy="user")
+     */
+    private $presences;
+
+    public function __construct()
+    {
+        $this->sorties = new ArrayCollection();
+        $this->presences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -156,6 +184,66 @@ class User
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sortie[]
+     */
+    public function getSorties(): Collection
+    {
+        return $this->sorties;
+    }
+
+    public function addSorty(Sortie $sorty): self
+    {
+        if (!$this->sorties->contains($sorty)) {
+            $this->sorties[] = $sorty;
+            $sorty->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSorty(Sortie $sorty): self
+    {
+        if ($this->sorties->removeElement($sorty)) {
+            // set the owning side to null (unless already changed)
+            if ($sorty->getUser() === $this) {
+                $sorty->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Presence[]
+     */
+    public function getPresences(): Collection
+    {
+        return $this->presences;
+    }
+
+    public function addPresence(Presence $presence): self
+    {
+        if (!$this->presences->contains($presence)) {
+            $this->presences[] = $presence;
+            $presence->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePresence(Presence $presence): self
+    {
+        if ($this->presences->removeElement($presence)) {
+            // set the owning side to null (unless already changed)
+            if ($presence->getUser() === $this) {
+                $presence->setUser(null);
+            }
+        }
 
         return $this;
     }

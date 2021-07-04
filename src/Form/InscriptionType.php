@@ -20,6 +20,7 @@ class InscriptionType extends AbstractType
             ->add('motdepasse', PasswordType::class)
             ->add('confirme_motdepasse', PasswordType::class)
             
+            
         ;
     }
 
